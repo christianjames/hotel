@@ -1,0 +1,97 @@
+<custom-header></custom-header>
+
+<div class="container page-checking">
+    <div class="row no-margin">
+        <a ng-click="openModalAddPerson('lg')" class="btn btn-primary">Incluir Pessoa</a>
+        <input type="text" class="form-control page-checking__input-search" placeholder="Busca por pessoa" ng-model="filterSearch" />
+
+        <div class="panel panel-primary page-checking__panel-list">
+            <div class="panel-heading">Consultas</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label>Filtrar por: {{}}</label>
+
+                    <div class="radio">
+                        <label class="page-checking__input-radio-filters">
+                            <input type="radio" name="filtersList" ng-click="filters.filterDataEntrada=null; filters.filterDataSaida=null;" id="all" value="all" checked>
+                            Todos
+                        </label>
+
+                        <label class="page-checking__input-radio-filters">
+                            <input type="radio" name="filtersList" ng-click="filters.filterDataEntrada=true; filters.filterDataSaida=false;" id="stillPresent" value="stillPresent">
+                            Pessoas ainda presentes
+                        </label>
+
+                        <label class="page-checking__input-radio-filters">
+                            <input type="radio" name="filtersList" ng-click="filters.filterDataEntrada=true; filters.filterDataSaida=true;" ng-model="filters.filtersList" id="alreadyLeft" value="alreadyLeft">
+                            Pessoas que já deixaram o hotel
+                        </label>
+                    </div>
+                </div>
+                <table class="table table-list table-list-hover table-striped table-checkings">
+                    <thead>
+                    <tr>
+                        <th ng-click="sortType = 'doc.pessoa.nome'; sortReverse = !sortReverse">
+                            Nome
+                            <i ng-show="sortType == 'doc.pessoa.nome' && sortReverse" class="fa fa-caret-up"></i>
+                            <i ng-show="sortType == 'doc.pessoa.nome' && !sortReverse" class="fa fa-caret-down"></i>
+                        </th>
+                        <th>Documento</th>
+                        <th ng-click="sortType = 'doc.dataEntrada'; sortReverse = !sortReverse">
+                            Data Entrada
+                            <i ng-show="sortType == 'doc.dataEntrada' && sortReverse" class="fa fa-caret-up"></i>
+                            <i ng-show="sortType == 'doc.dataEntrada' && !sortReverse" class="fa fa-caret-down"></i>
+                        </th>
+                        <th ng-click="sortType = 'doc.dataSaida'; sortReverse = !sortReverse">
+                            Data Saída
+                            <i ng-show="sortType == 'doc.dataSaida' && sortReverse" class="fa fa-caret-up"></i>
+                            <i ng-show="sortType == 'doc.dataSaida' && !sortReverse" class="fa fa-caret-down"></i>
+                        </th>
+                        <th>Possui Veículo</th>
+                        <th>Valor Gasto</th>
+                        <th>Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr ng-if="(checkings | filter:filterSearch | filterHasValue: ({dataEntrada: filters.filterDataEntrada, dataSaida: filters.filterDataSaida})).length == 0">
+                        <td colspan="7" class="text-center">Nenhum registro encontrado.</td>
+                    </tr>
+                    <tr ng-repeat="item in checkings | filter: filterSearch |
+                        filterHasValue: ({dataEntrada: filters.filterDataEntrada, dataSaida: filters.filterDataSaida}) |
+                        startFrom:(pagination.page-1)*pagination.perPage | limitTo:pagination.perPage | orderBy:sortType:sortReverse">
+                        <td>
+                            {{item.doc.pessoa.nome}}
+                        </td>
+                        <td>
+                            {{item.doc.pessoa.documento}}
+                        </td>
+                        <td>
+                            {{item.doc.dataEntrada | formatDateTime}}
+                        </td>
+                        <td>
+                            {{item.doc.dataSaida | formatDateTime}}
+                        </td>
+                        <td>
+                            {{item.doc.possuiVeiculo ? 'Sim' : 'Não'}}
+                        </td>
+                        <td>
+                            {{item.doc.valorGasto > 0 ? item.doc.valorGasto : '-' | currency}}
+                        </td>
+                        <td>
+                            <button class="btn btn-sm" ng-click="openModalAddPerson('lg', item.doc)">Alterar</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="right">
+                    <uib-pagination max-size="10" rotate="false" boundary-links="true"
+                                    items-per-page="pagination.countPerPage" total-items="(checkings | filterHasValue: ({dataEntrada: filters.filterDataEntrada, dataSaida: filters.filterDataSaida}) | filter: filterSearch).length"
+                                    ng-model="pagination.page" class="pagination-sm" previous-text="&lsaquo;"
+                                    next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></uib-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,124 @@
+<form ng-submit="save()" name="formPerson" id="formPerson">
+    <div class="modal-body modal-info hide-overflow">
+        <button type="button" class="close" data-dismiss="modal" ng-click="cancel()">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+        </button>
+        <h2>Adicionar Pessoa</h2>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label for="nome">Nome *</label>
+                    <input type="text" required ng-model="checking.pessoa.nome" class="form-control" id="nome" placeholder="Nome">
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label for="documento">Documento *</label>
+                    <input type="number" required ng-model="checking.pessoa.documento" class="form-control" id="documento" placeholder="Documento">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label for="telefone">Telefone *</label>
+                    <input type="text" required ng-model="checking.pessoa.telefone" class="form-control" id="telefone" placeholder="Telefone">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label for="DataEntrada">
+                        Data de Entrada
+                    </label>
+
+                    <p class="input-group">
+                        <input type="text" id="DataEntrada" class="form-control" uib-datepicker-popup="dd/MMMM/yyyy"
+                               ng-model="checking.dataEntrada"
+                               is-open="dataEntrada.opened"
+                               ng-required="true"
+                               close-text="Fechar"
+                               current-text="Hoje"
+                               clear-text="Limpar" />
+                        <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="dataEntrada.opened = true">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                    </span>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label for="DataEntrada">Hora de Entrada</label>
+                    <div>
+                        <div uib-timepicker ng-model="checking.dataEntrada" show-meridian="false" show-spinners="false"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label for="DataSaida">
+                        Data de Saida
+                    </label>
+
+                    <p class="input-group">
+                        <input type="text" id="DataSaida" class="form-control" uib-datepicker-popup="dd/MMMM/yyyy"
+                               ng-model="checking.dataSaida"
+                               is-open="dataSaida.opened"
+                               ng-required="false"
+                               close-text="Fechar"
+                               current-text="Hoje"
+                               clear-text="Limpar" />
+                        <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="dataSaida.opened = true">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                    </span>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label>Hora de Saída</label>
+                    <div>
+                        <div uib-timepicker ng-model="checking.dataSaida" show-meridian="false" show-spinners="false"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="radio">
+                    <label>
+                        <input type="checkbox" ng-model="checking.possuiVeiculo"  name="possuiVeiculo" id="possuiVeiculo">
+                        Possuí Veículo
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <div class="row row-foot mt-10 mb-10">
+            <div class="col-md-12 col-sm-12">
+                <p class="text-left">
+                    * Campos obrigatórios.
+                </p>
+                <p class="text-left text-warning" ng-if="((checking.dataSaida) && (checking.dataSaida < checking.dataEntrada))">
+                    ** Data de Saida não pode ser menor que a data de entrada.
+                </p>
+                <button ng-disabled="!formPerson.$valid || ((checking.dataSaida) && (checking.dataSaida < checking.dataEntrada))" type="submit" class="btn btn-success btn-md">Adicionar</button>
+            </div>
+        </div>
+    </div>
+</form>

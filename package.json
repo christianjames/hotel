@@ -1,0 +1,70 @@
+{
+  "author": "Christian James",
+  "name": "senior-hostel",
+  "version": "0.0.1",
+  "homepage": "",
+  "devDependencies": {
+    "gulp": "~3.9.1",
+    "gulp-clean": "~0.3.1",
+    "gulp-compass": "~2.1.0",
+    "gulp-concat": "~2.6.0",
+    "gulp-connect": "^5.0.0",
+    "gulp-install": "~0.6.0",
+    "gulp-jshint": "~1.11.2",
+    "gulp-jslint": "^1.0.10",
+    "gulp-notify": "~2.2.0",
+    "gulp-open": "^2.0.0",
+    "gulp-uglify": "~1.2.0",
+    "gulp-watch": "~4.3.4",
+    "jshint-stylish": "~2.0.1",
+    "map-stream": "0.0.6",
+    "run-sequence": "~1.1.2"
+  },
+  "jslintConfig": {
+    "node": true,
+    "evil": true,
+    "nomen": true,
+    "latedef": false,
+    "global": [
+      {
+        "angular": true
+      }
+    ],
+    "predef": [],
+    "reporter": "default",
+    "edition": "2014-02-06",
+    "errorsOnly": false
+  },
+  "jshintConfig": {
+    "node": true,
+    "devel": true,
+    "laxcomma": true,
+    "browser": true,
+    "esnext": true,
+    "bitwise": true,
+    "camelcase": false,
+    "curly": true,
+    "immed": false,
+    "indent": 4,
+    "newcap": true,
+    "noarg": true,
+    "undef": true,
+    "strict": true,
+    "trailing": true,
+    "smarttabs": true,
+    "multistr": true,
+    "globals": {
+      "jasmine": true,
+      "angular": true,
+      "AbstractService": true,
+      "lightbox": true,
+      "browser": true,
+      "element": true,
+      "by": true,
+      "io": true,
+      "_": false,
+      "$": false
+    }
+  },
+  "license": "MIT"
+}
