@@ -1,0 +1,21 @@
+
+.custon-header {
+    background: #1b9580;
+    padding: 15px;
+}
+
+.page-checking {
+    margin-top: 10px;
+}
+
+.page-checking__panel-list {
+    margin-top: 10px;
+}
+
+.page-checking__input-search {
+    margin-top: 10px;
+}
+
+.page-checking__input-radio-filters {
+    margin-right: 10px;
+}

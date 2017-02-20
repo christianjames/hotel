@@ -7,7 +7,6 @@ nbproject
 .project
 .settings
 .sass-cache
-media/css
 media/js/app.min.js
 /node_modules
 media/vendor

@@ -1,8 +1,6 @@
-### Getting started# ###
+### Getting started ###
 
 > npm install
-
-##### Caso peça alguma opção de versão do angular para baixar, escolher a que
 
 > bower install
 
