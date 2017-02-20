@@ -3,7 +3,7 @@
 <div class="container page-checking">
     <div class="row no-margin">
         <a ng-click="openModalAddPerson('lg')" class="btn btn-primary">Incluir Pessoa</a>
-        <input type="text" class="form-control page-checking__input-search" placeholder="Busca por pessoa" ng-model="filterSearch" />
+        <input type="text" class="form-control page-checking__input-search" placeholder="Buscar por nome ou documento" ng-model="filterSearch" />
 
         <div class="panel panel-primary page-checking__panel-list">
             <div class="panel-heading">Consultas</div>
@@ -54,7 +54,7 @@
                     </thead>
                     <tbody>
 
-                    <tr ng-if="(checkings | filter:filterSearch | filterHasValue: ({dataEntrada: filters.filterDataEntrada, dataSaida: filters.filterDataSaida})).length == 0">
+                    <tr ng-if="(checkings | filter: filterSearch | filterHasValue: ({dataEntrada: filters.filterDataEntrada, dataSaida: filters.filterDataSaida})).length == 0">
                         <td colspan="7" class="text-center">Nenhum registro encontrado.</td>
                     </tr>
                     <tr ng-repeat="item in checkings | filter: filterSearch |

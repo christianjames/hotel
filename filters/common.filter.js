@@ -4,7 +4,8 @@
     angular
         .module('app.filters')
         .filter('startFrom', startFrom)
-        .filter('filterHasValue', ['$filter', filterHasValue]);
+        .filter('filterHasValue', ['$filter', filterHasValue])
+        .filter('filterMultiple', ['$filter', filterMultiple]);
 
 
     /**
@@ -46,4 +47,13 @@
 
         };
     }
+
+    function filterMultiple($filter) {
+        return function (items, oFilter) {
+            return $filter('filter')(items, oFilter, function (filterValue, aValue) {
+                return aValue.indexOf(filterValue) > -1;
+            });
+        };
+    }
+
 })();

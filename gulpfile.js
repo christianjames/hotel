@@ -23,6 +23,16 @@ var  customReporter = map(function (file, cb) {
     cb(null, file);
 });
 
+var filesCSS = [
+    'media/css/layout.css'
+];
+
+var filesHTML = [
+    'index.html',
+    'modules/**/*.html',
+    'directives/**/*.html'
+];
+
 var filesJS = [
     'media/js/app.js',
     'abstract/service.abstract.js',
@@ -110,12 +120,12 @@ gulp.task('delete-app-min', function () {
 });
 
 gulp.task('html', function () {
-    gulp.src('./**/*.html')
+    gulp.src(filesHTML)
         .pipe(connect.reload());
 });
 
 gulp.task('css', function () {
-    gulp.src('./**/*.html')
+    gulp.src(filesCSS)
         .pipe(connect.reload());
 });
 
@@ -129,8 +139,8 @@ gulp.task('open-browser', function(){
 });
 
 gulp.task('watch-js', function () {
-    gulp.watch('./**/*.html', ['html']);
-    gulp.watch('./**/*.css', ['css']);
+    gulp.watch(filesHTML, ['html']);
+    gulp.watch(filesCSS, ['css']);
     gulp.watch(filesJS, ['delete-app-min', 'concat-js']);
 });
 

@@ -66,9 +66,9 @@
     function modalAddPersonCtrl($scope, ModalOptions, $modalInstance) {
         $scope.checking = {
             pessoa: {
-                nome: 'Christian',
-                documento: 34235523,
-                telefone: 'fasfsafas'
+                nome: '',
+                documento: '',
+                telefone: ''
             },
             dataEntrada: new Date(),
             dataSaida: null,
